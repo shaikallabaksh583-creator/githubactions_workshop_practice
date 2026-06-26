@@ -1,0 +1,131 @@
+name: Pull request workflow
+
+on:
+  pull_request:
+    branches:
+      - developer/v1.0
+  workflow_dispatch:
+
+jobs:
+  PR-job:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+
+      # Order service build and Trivy scan
+      - name: Build and export order service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/order-service
+          load: true
+          tags: order-service:${{ github.event.pull_request.head.sha }}
+
+      - name: Manual Trivy Setup
+        uses: aquasecurity/setup-trivy-action@v0.20
+        with:
+          cache: true
+          version: v0.65.0
+      - name: Run Trivy vulnerability scan for order service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: order-service:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+        
+              
+      # Product service build and Trivy scan
+      - name: Build and export product service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/product-service
+          load: true
+          tags: product-service:${{ github.event.pull_request.head.sha }}
+
+      - name: Run Trivy vulnerability scan for product service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: product-service:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'    
+
+      # Store front service build and Trivy scan
+      - name: Build and export store front service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/store-front
+          load: true
+          tags: store-front:${{ github.event.pull_request.head.sha }}
+
+      - name: Run Trivy vulnerability scan for store front service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: store-front:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'    
+
+      # Makeline service build and Trivy scan
+      - name: Build and export makeline service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/makeline-service
+          load: true
+          tags: makeline-service:${{ github.event.pull_request.head.sha }} 
+
+      - name: Run Trivy vulnerability scan for makeline service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: makeline-service:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'    
+
+      # Store admin service build and Trivy scan
+      - name: Build and export store admin service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/store-admin
+          load: true
+          tags: store-admin:${{ github.event.pull_request.head.sha }} 
+
+      - name: Run Trivy vulnerability scan for store admin service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: store-admin:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'  
+
+      # Virtual customer service build and Trivy scan
+      - name: Build and export virtual customer service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/virtual-customer
+          load: true
+          tags: virtual-customer:${{ github.event.pull_request.head.sha }}  
+
+      - name: Run Trivy vulnerability scan for virtual customer service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: virtual-customer:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'    
+
+      # Virtual worker service build and Trivy scan
+      - name: Build and export virtual worker service to Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/virtual-worker
+          load: true
+          tags: virtual-worker:${{ github.event.pull_request.head.sha }}   
+
+      - name: Run Trivy vulnerability scan for virtual worker service
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: virtual-worker:${{ github.event.pull_request.head.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'       
+          
+              
