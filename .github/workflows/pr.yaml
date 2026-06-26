@@ -32,7 +32,7 @@ jobs:
           tags: order-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan order service
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: order-service:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -47,7 +47,7 @@ jobs:
           tags: product-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan product service
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: product-service:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -62,7 +62,7 @@ jobs:
           tags: store-front:${{ github.event.pull_request.head.sha }}
 
       - name: Scan store front
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: store-front:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -77,7 +77,7 @@ jobs:
           tags: makeline-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan makeline service
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: makeline-service:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -92,7 +92,7 @@ jobs:
           tags: store-admin:${{ github.event.pull_request.head.sha }}
 
       - name: Scan store admin
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: store-admin:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -107,7 +107,7 @@ jobs:
           tags: virtual-customer:${{ github.event.pull_request.head.sha }}
 
       - name: Scan virtual customer
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: virtual-customer:${{ github.event.pull_request.head.sha }}
           format: sarif
@@ -122,9 +122,8 @@ jobs:
           tags: virtual-worker:${{ github.event.pull_request.head.sha }}
 
       - name: Scan virtual worker
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: virtual-worker:${{ github.event.pull_request.head.sha }}
           format: sarif
           output: trivy-virtual-worker.sarif
-          
