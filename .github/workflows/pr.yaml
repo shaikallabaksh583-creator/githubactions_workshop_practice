@@ -17,11 +17,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Install Trivy
-        uses: aquasecurity/setup-trivy@v0.2.6
-        with:
-          version: v0.58.2
-          cache: true
+      
 
       # Order Service
       - name: Build order service
@@ -32,11 +28,11 @@ jobs:
           tags: order-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan order service
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: order-service:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-order-service.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-order-service.sarif \
+          order-service:${{ github.event.pull_request.head.sha }}
 
       # Product Service
       - name: Build product service
@@ -47,11 +43,11 @@ jobs:
           tags: product-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan product service
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: product-service:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-product-service.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-product-service.sarif \
+          product-service:${{ github.event.pull_request.head.sha }}
 
       # Store Front
       - name: Build store front
@@ -62,11 +58,11 @@ jobs:
           tags: store-front:${{ github.event.pull_request.head.sha }}
 
       - name: Scan store front
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: store-front:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-store-front.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-store-front.sarif \
+          store-front:${{ github.event.pull_request.head.sha }}
 
       # Makeline
       - name: Build makeline service
@@ -77,11 +73,11 @@ jobs:
           tags: makeline-service:${{ github.event.pull_request.head.sha }}
 
       - name: Scan makeline service
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: makeline-service:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-makeline-service.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-makeline-service.sarif \
+          makeline-service:${{ github.event.pull_request.head.sha }}
 
       # Store Admin
       - name: Build store admin
@@ -92,11 +88,11 @@ jobs:
           tags: store-admin:${{ github.event.pull_request.head.sha }}
 
       - name: Scan store admin
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: store-admin:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-store-admin.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-store-admin.sarif \
+          store-admin:${{ github.event.pull_request.head.sha }}
 
       # Virtual Customer
       - name: Build virtual customer
@@ -107,11 +103,11 @@ jobs:
           tags: virtual-customer:${{ github.event.pull_request.head.sha }}
 
       - name: Scan virtual customer
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: virtual-customer:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-virtual-customer.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-virtual-customer.sarif \
+          virtual-customer:${{ github.event.pull_request.head.sha }}
 
       # Virtual Worker
       - name: Build virtual worker
@@ -122,8 +118,8 @@ jobs:
           tags: virtual-worker:${{ github.event.pull_request.head.sha }}
 
       - name: Scan virtual worker
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: virtual-worker:${{ github.event.pull_request.head.sha }}
-          format: sarif
-          output: trivy-virtual-worker.sarif
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-virtual-worker.sarif \
+          virtual-worker:${{ github.event.pull_request.head.sha }}
