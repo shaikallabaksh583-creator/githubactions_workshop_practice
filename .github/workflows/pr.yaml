@@ -28,7 +28,7 @@ jobs:
           tags: order-service:${{ github.sha }}
 
       - name: Scan order service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: order-service:${{ github.sha }}
           format: sarif
@@ -42,7 +42,7 @@ jobs:
           tags: product-service:${{ github.sha }}
 
       - name: Scan product service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: product-service:${{ github.sha }}
           format: sarif
@@ -56,7 +56,7 @@ jobs:
           tags: store-front:${{ github.sha }}
 
       - name: Scan store front service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: store-front:${{ github.sha }}
           format: sarif
@@ -70,7 +70,7 @@ jobs:
           tags: makeline-service:${{ github.sha }}
 
       - name: Scan makeline service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: makeline-service:${{ github.sha }}
           format: sarif
@@ -84,7 +84,7 @@ jobs:
           tags: store-admin:${{ github.sha }}
 
       - name: Scan store admin service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: store-admin:${{ github.sha }}
           format: sarif
@@ -98,7 +98,7 @@ jobs:
           tags: virtual-customer:${{ github.sha }}
 
       - name: Scan virtual customer service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: virtual-customer:${{ github.sha }}
           format: sarif
@@ -112,8 +112,9 @@ jobs:
           tags: virtual-worker:${{ github.sha }}
 
       - name: Scan virtual worker service
-        uses: aquasecurity/trivy-action@PINNED_TRIVY_SHA
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: virtual-worker:${{ github.sha }}
           format: sarif
           output: virtual-worker-trivy-results.sarif
+          
