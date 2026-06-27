@@ -3,6 +3,10 @@ variable "resource_group_info" {
       name = string
       location = string
     })
+    default = {
+      name = "myresourcegroup"
+      location = "eastus"
+    }
   
 }
 
@@ -13,6 +17,14 @@ variable "aks_cluster_info" {
       size = string
       version = string
     })
+    default = {
+      
+      name = "aksshopcluster-qa"
+      count = 3
+      size = "Standard_B2ms"
+      version = "1.31"
+
+    }
   
 }
 
