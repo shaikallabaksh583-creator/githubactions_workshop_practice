@@ -25,14 +25,14 @@ jobs:
         with:
           context: ./src/order-service
           load: true
-          tags: order-service:${{ github.event.pull_request.head.sha }}
+          tags: order-service:${{ github.sha }}
 
       - name: Scan order service
         run: |
          trivy image \
           --format sarif \
           --output trivy-order-service.sarif \
-          order-service:${{ github.event.pull_request.head.sha }}
+          order-service:${{ github.sha }}
 
       # Product Service
       - name: Build product service
@@ -40,14 +40,14 @@ jobs:
         with:
           context: ./src/product-service
           load: true
-          tags: product-service:${{ github.event.pull_request.head.sha }}
+          tags: product-service:${{ github.sha }}
 
       - name: Scan product service
         run: |
          trivy image \
           --format sarif \
           --output trivy-product-service.sarif \
-          product-service:${{ github.event.pull_request.head.sha }}
+          product-service:${{ github.sha }}
 
       # Store Front
       - name: Build store front
@@ -55,14 +55,14 @@ jobs:
         with:
           context: ./src/store-front
           load: true
-          tags: store-front:${{ github.event.pull_request.head.sha }}
+          tags: store-front:${{ github.sha }}
 
       - name: Scan store front
         run: |
          trivy image \
           --format sarif \
           --output trivy-store-front.sarif \
-          store-front:${{ github.event.pull_request.head.sha }}
+          store-front:${{ github.sha }}
 
       # Makeline
       - name: Build makeline service
@@ -70,14 +70,14 @@ jobs:
         with:
           context: ./src/makeline-service
           load: true
-          tags: makeline-service:${{ github.event.pull_request.head.sha }}
+          tags: makeline-service:${{ github.sha }}
 
       - name: Scan makeline service
         run: |
          trivy image \
           --format sarif \
           --output trivy-makeline-service.sarif \
-          makeline-service:${{ github.event.pull_request.head.sha }}
+          makeline-service:${{ github.sha }}
 
       # Store Admin
       - name: Build store admin
@@ -85,14 +85,14 @@ jobs:
         with:
           context: ./src/store-admin
           load: true
-          tags: store-admin:${{ github.event.pull_request.head.sha }}
+          tags: store-admin:${{ github.sha }}
 
       - name: Scan store admin
         run: |
          trivy image \
           --format sarif \
           --output trivy-store-admin.sarif \
-          store-admin:${{ github.event.pull_request.head.sha }}
+          store-admin:${{ github.sha }}
 
       # Virtual Customer
       - name: Build virtual customer
@@ -100,14 +100,14 @@ jobs:
         with:
           context: ./src/virtual-customer
           load: true
-          tags: virtual-customer:${{ github.event.pull_request.head.sha }}
+          tags: virtual-customer:${{ github.sha }}
 
       - name: Scan virtual customer
         run: |
          trivy image \
           --format sarif \
           --output trivy-virtual-customer.sarif \
-          virtual-customer:${{ github.event.pull_request.head.sha }}
+          virtual-customer:${{ github.sha }}
 
       # Virtual Worker
       - name: Build virtual worker
@@ -115,32 +115,27 @@ jobs:
         with:
           context: ./src/virtual-worker
           load: true
-          tags: virtual-worker:${{ github.event.pull_request.head.sha }}
+          tags: virtual-worker:${{ github.sha }}
 
       - name: Scan virtual worker
         run: |
          trivy image \
           --format sarif \
           --output trivy-virtual-worker.sarif \
-          virtual-worker:${{ github.event.pull_request.head.sha }}
+          virtual-worker:${{ github.sha }}
 
       - name: Build ai-service
         uses: docker/build-push-action@v6
         with:
           context: ./src/ai-service
           load: true
-          tags: ai-service:${{ github.event.pull_request.head.sha }}
+          tags: ai-service:${{ github.sha }}
 
       - name: Scan ai-service
         run: |
          trivy image \
           --format sarif \
           --output trivy-ai-service.sarif \
-          ai-service:${{ github.event.pull_request.head.sha }}    
+          ai-service:${{ github.sha }}    
 
-      - name: Scan virtual worker
-        run: |
-         trivy image \
-          --format sarif \
-          --output trivy-virtual-worker.sarif \
-          virtual-worker:${{ github.event.pull_request.head.sha }}    
+         
