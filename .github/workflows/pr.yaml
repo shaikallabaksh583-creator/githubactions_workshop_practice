@@ -123,3 +123,24 @@ jobs:
           --format sarif \
           --output trivy-virtual-worker.sarif \
           virtual-worker:${{ github.event.pull_request.head.sha }}
+
+      - name: Build ai-service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/ai-service
+          load: true
+          tags: ai-service:${{ github.event.pull_request.head.sha }}
+
+      - name: Scan ai-service
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-ai-service.sarif \
+          ai-service:${{ github.event.pull_request.head.sha }}    
+
+      - name: Scan virtual worker
+        run: |
+         trivy image \
+          --format sarif \
+          --output trivy-virtual-worker.sarif \
+          virtual-worker:${{ github.event.pull_request.head.sha }}    
