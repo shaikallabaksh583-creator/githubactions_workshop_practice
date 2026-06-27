@@ -5,7 +5,7 @@ variable "resource_group_info" {
     })
     default = {
       name = "myresourcegroup"
-      location = "eastus"
+      location = "centralindia"
     }
   
 }
@@ -21,7 +21,7 @@ variable "aks_cluster_info" {
       
       name = "aksshopcluster-qa"
       count = 3
-      size = "Standard_B2ms"
+      size = "Standard_D2s_v4"
       version = "1.31"
 
     }
