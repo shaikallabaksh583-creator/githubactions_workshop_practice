@@ -25,7 +25,7 @@ jobs:
         with:
           context: ./src/order-service
           load: true
-          tags: shaikallabaksh583/devorder-service:latest
+          tags: allabakshu/training_repo1/devorder-service:latest
           push: true
 
       #- name: Scan order service
@@ -41,7 +41,7 @@ jobs:
         with:
           context: ./src/product-service
           load: true
-          tags: shaikallabaksh583/devproduct-service:latest
+          tags: allabakshu/training_repo1/devproduct-service:latest
           push: true
 
       #- name: Scan product service
@@ -57,7 +57,7 @@ jobs:
         with:
           context: ./src/store-front
           load: true
-          tags: shaikallabaksh583/devstore-front:latest
+          tags: allabakshu/training_repo1/devstore-front:latest
           push: true
 
       #- name: Scan store front
@@ -73,7 +73,7 @@ jobs:
         with:
           context: ./src/makeline-service
           load: true
-          tags: shaikallabaksh583/devmakeline-service:latest
+          tags: allabakshu/training_repo1/devmakeline-service:latest
           push: true
 
           
@@ -93,7 +93,7 @@ jobs:
         with:
           context: ./src/store-admin
           load: true
-          tags: shaikallabaksh583/devstore-admin:latest
+          tags: allabakshu/training_repo1/devstore-admin:latest
           push: true
 
       #- name: Scan store admin
@@ -109,7 +109,7 @@ jobs:
         with:
           context: ./src/virtual-customer
           load: true
-          tags: shaikallabaksh583/devvirtual-customer:latest
+          tags: allabakshu/training_repo1/devvirtual-customer:latest
           push: true
 
       #- name: Scan virtual customer
@@ -125,7 +125,7 @@ jobs:
         with:
           context: ./src/virtual-worker
           load: true
-          tags: shaikallabaksh583/devvirtual-worker:latest
+          tags: allabakshu/training_repo1/devvirtual-worker:latest
           push: true
 
       #- name: Scan virtual worker
@@ -140,7 +140,7 @@ jobs:
         with:
           context: ./src/ai-service
           load: true
-          tags: shaikallabaksh583/devai-service:latest
+          tags: allabakshu/training_repo1/devai-service:latest
           push: true
 
       #- name: Scan ai-service
