@@ -1,0 +1,152 @@
+name: Developer workflow
+
+on:
+  push:
+    branches:
+      - developer/v1.0
+  workflow_dispatch:
+
+jobs:
+  Dev-CI:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      
+
+      # Order Service
+      - name: Build order service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/order-service
+          load: true
+          tags: shaikallabaksh583/devorder-service:latest
+          push: true
+
+      #- name: Scan order service
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-order-service.sarif \
+      #    order-service:${{ github.sha }}
+
+      # Product Service
+      - name: Build product service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/product-service
+          load: true
+          tags: shaikallabaksh583/devproduct-service:latest
+          push: true
+
+      #- name: Scan product service
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-product-service.sarif \
+      #    product-service:${{ github.sha }}
+
+      # Store Front
+      - name: Build store front
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/store-front
+          load: true
+          tags: shaikallabaksh583/devstore-front:latest
+          push: true
+
+      #- name: Scan store front
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-store-front.sarif \
+      #    store-front:${{ github.sha }}
+
+      # Makeline
+      - name: Build makeline service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/makeline-service
+          load: true
+          tags: shaikallabaksh583/devmakeline-service:latest
+          push: true
+
+          
+
+      
+
+      #- name: Scan makeline service
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-makeline-service.sarif \
+      #    makeline-service:${{ github.sha }}
+
+      # Store Admin
+      - name: Build store admin
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/store-admin
+          load: true
+          tags: shaikallabaksh583/devstore-admin:latest
+          push: true
+
+      #- name: Scan store admin
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-store-admin.sarif \
+      #    store-admin:${{ github.sha }}
+
+      # Virtual Customer
+      - name: Build virtual customer
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/virtual-customer
+          load: true
+          tags: shaikallabaksh583/devvirtual-customer:latest
+          push: true
+
+      #- name: Scan virtual customer
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-virtual-customer.sarif \
+      #    virtual-customer:${{ github.sha }}
+
+      # Virtual Worker
+      - name: Build virtual worker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/virtual-worker
+          load: true
+          tags: shaikallabaksh583/devvirtual-worker:latest
+          push: true
+
+      #- name: Scan virtual worker
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-virtual-worker.sarif \
+      #    virtual-worker:${{ github.sha }}
+
+      - name: Build ai-service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src/ai-service
+          load: true
+          tags: shaikallabaksh583/devai-service:latest
+          push: true
+
+      #- name: Scan ai-service
+      #  run: |
+      #   trivy image \
+      #    --format sarif \
+      #    --output trivy-ai-service.sarif \
+      #    ai-service:${{ github.sha }}    
+         
