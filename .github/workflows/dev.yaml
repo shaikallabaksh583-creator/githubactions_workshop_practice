@@ -155,6 +155,8 @@ jobs:
          cd infra/terraform
          terraform init
          terraform apply -auto-approve
+         ls -R
+         cat main.tf
       - name: deploy into k8s
         run: |
          kubectl apply -f aks-store-all-in-one.yaml
