@@ -154,7 +154,7 @@ jobs:
         run: |
          cd infra/terraform
          terraform init
-         terraform apply -var-file='st.tfvars' -auto-approve
+         terraform apply -auto-approve
       - name: deploy into k8s
         run: |
          kubectl apply -f aks-store-all-in-one.yaml
