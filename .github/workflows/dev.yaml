@@ -148,5 +148,14 @@ jobs:
       #   trivy image \
       #    --format sarif \
       #    --output trivy-ai-service.sarif \
-      #    ai-service:${{ github.sha }}    
+      #    ai-service:${{ github.sha }}  
+      
+      - name: Run Terraform to proovision infra
+        run: |
+         cd infra/terraform
+         terraform init
+         terraform apply -var-file='st.tfvars' -auto-approve
+      - name: deploy into k8s
+        run: |
+         kubectl apply -f aks-store-all-in-one.yaml
          
