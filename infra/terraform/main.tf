@@ -30,6 +30,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   resource_group_name = var.resource_group_info.name
   dns_prefix          = "exampleaks1"
 
+  oidc_issuer_enabled = true
+
   default_node_pool {
     name       = "default"
     node_count = var.aks_cluster_info.count
